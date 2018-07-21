@@ -136,7 +136,7 @@ rule init ( version ? : command * : options * )
 
   toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>off : ;
   toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>speed : -O3 ;
-  toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>space : -Os ;
+  toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>space : -O0 ;
 
   toolset.flags nvcc.compile OPTIONS $(condition)/<profiling>off : ;
   toolset.flags nvcc.compile OPTIONS $(condition)/<profiling>on : -pg ;
