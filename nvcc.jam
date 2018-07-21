@@ -55,6 +55,7 @@ feature.feature gpu-architecture : $(gpu-architectures) : propagated optional ;
 feature.feature gpu-code : $(gpu-codes) : propagated optional ;
 
 type.register CU : cu : CPP ;
+type.register CUH : cuh : HPP ;
 #type.register GPU : gpu : CPP ;
 type.register PTX : ptx : ASM ;
 
