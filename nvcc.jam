@@ -55,6 +55,7 @@ feature.feature gpu-architecture : $(gpu-architectures) : propagated optional ;
 feature.feature gpu-code : $(gpu-codes) : propagated optional ;
 
 type.register CU : cu : CPP ;
+type.register CUH : cuh : HPP ;
 #type.register GPU : gpu : CPP ;
 type.register PTX : ptx : ASM ;
 
@@ -136,7 +137,7 @@ rule init ( version ? : command * : options * )
 
   toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>off : ;
   toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>speed : -O3 ;
-  toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>space : -Os ;
+  toolset.flags nvcc.compile OPTIONS $(condition)/<optimization>space : -O0 ;
 
   toolset.flags nvcc.compile OPTIONS $(condition)/<profiling>off : ;
   toolset.flags nvcc.compile OPTIONS $(condition)/<profiling>on : -pg ;
