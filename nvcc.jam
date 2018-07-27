@@ -18,7 +18,6 @@ local gpu-architectures =
   compute_21
   compute_30
   compute_32
-  compute_33
   compute_35
   compute_37
   compute_50
@@ -28,9 +27,15 @@ local gpu-architectures =
   compute_61
   compute_62
   compute_70
-  compute_71
+  compute_72
   ;
 local gpu-codes =
+  sm_10
+  sm_11
+  sm_12
+  sm_13
+  sm_20
+  sm_21
   sm_30
   sm_32
   sm_35
