@@ -7,6 +7,7 @@ import toolset ;
 import feature ;
 import common ;
 import errors ;
+import os ;
 
 local gpu-architectures =
   compute_10
@@ -73,7 +74,25 @@ generators.register-standard nvcc.asm : ASM : OBJ : <toolset>nvcc ;
 
 rule init ( version ? : command * : options * )
 {
-  command = [ common.get-invocation-command nvcc : nvcc : $(command) ] ;
+  local possible-paths = ;
+  if ! $(command)
+  {
+    local possible-roots = ;
+    if [ os.name ] = NT
+    {
+      local program-files-roots = "C:/Program Files" "C:/Program Files (x86)" ;
+
+      possible-roots = [ GLOB $(program-files-roots)/"NVIDIA GPU Computing Toolkit/CUDA" : "v*" : true ] ;
+    }
+    else if [ os.name ] = MACOSX
+    {
+      possible-roots = [ GLOB "/Developer/NVIDIA" : "CUDA-*" : true ] ;
+    }
+
+    possible-paths = $(possible-roots)/bin ;
+  }
+
+  command = [ common.get-invocation-command nvcc : nvcc : $(command) : $(possible-paths) ] ;
 
   if $(command)
   {
